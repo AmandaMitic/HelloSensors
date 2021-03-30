@@ -46,8 +46,8 @@ public class AccelerometerActivity extends AppCompatActivity implements SensorEv
             float z = event.values[2];
 
             String xNew = ("X: " + x);
-            String yNew = ("X: " + y);
-            String zNew = ("X: " + z);
+            String yNew = ("Y: " + y);
+            String zNew = ("Z: " + z);
 
 
             xValue.setText(xNew);

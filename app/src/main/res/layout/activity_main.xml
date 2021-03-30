@@ -6,30 +6,51 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-   <!-- <Button
+    <Button
         android:id="@+id/compass"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="117dp"
+        android:layout_height="58dp"
+        android:layout_marginStart="147dp"
+        android:layout_marginLeft="147dp"
+        android:layout_marginTop="192dp"
+        android:layout_marginEnd="147dp"
+        android:layout_marginRight="147dp"
+        android:onClick="compassPage"
         android:text="Compass"
-        tools:layout_editor_absoluteX="153dp"
-        tools:layout_editor_absoluteY="202dp"
-        android:onClick="compassPage"/> -->
+        android:textColor="#090909"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/accelerometers"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="110dp"
+        android:layout_marginLeft="110dp"
+        android:layout_marginTop="276dp"
+        android:layout_marginEnd="110dp"
+        android:layout_marginRight="110dp"
+        android:onClick="accelerometerPage"
         android:text="Accelerometers"
-        tools:layout_editor_absoluteX="119dp"
-        tools:layout_editor_absoluteY="266dp"
-        android:onClick="accelerometerPage"/>
+        android:textColor="#070707"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/test"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
         android:text="Press the button(s) to test the sensor(s): "
-        tools:layout_editor_absoluteX="72dp"
-        tools:layout_editor_absoluteY="100dp" />
+        android:textColor="#090909"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="23dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
