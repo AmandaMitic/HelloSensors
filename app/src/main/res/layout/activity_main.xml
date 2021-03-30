@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FBF8F8"
     tools:context=".MainActivity">
 
     <Button
@@ -17,8 +18,10 @@
         android:layout_marginRight="147dp"
         android:onClick="compassPage"
         android:text="Compass"
-        android:textColor="#090909"
+        android:textColor="#F8F5F5"
         android:textStyle="bold"
+        app:backgroundTint="#040303"
+        app:iconTint="#F6F3F3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -35,8 +38,10 @@
         android:layout_marginRight="110dp"
         android:onClick="accelerometerPage"
         android:text="Accelerometers"
-        android:textColor="#070707"
+        android:textColor="#FBF8F8"
         android:textStyle="bold"
+        app:backgroundTint="#070707"
+        app:iconTint="#FFFCFC"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
