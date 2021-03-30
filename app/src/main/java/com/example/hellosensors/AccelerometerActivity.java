@@ -13,11 +13,9 @@ import android.widget.TextView;
 
 public class AccelerometerActivity extends AppCompatActivity implements SensorEventListener {
 
-    TextView xValue, yValue, zValue;
-
-    //Tillagt
+    private TextView xValue, yValue, zValue;
     private SensorManager sensormanager;
-    Sensor accelerometer;
+    private Sensor accelerometer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,28 +25,34 @@ public class AccelerometerActivity extends AppCompatActivity implements SensorEv
         //Get the object from the page
         xValue = (TextView) findViewById(R.id.xValue);
         yValue = (TextView) findViewById(R.id.yValue);
-        xValue = (TextView) findViewById(R.id.zValue);
+        zValue = (TextView) findViewById(R.id.zValue);
 
         //Tillagt
         sensormanager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         accelerometer = sensormanager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
 
         //Listener
-        sensormanager.registerListener(this, accelerometer, SensorManager.SENSOR_DELAY_GAME);
+        sensormanager.registerListener(this, accelerometer, SensorManager.SENSOR_DELAY_NORMAL);
     }
 
     @Override
     public void onSensorChanged(SensorEvent event) {
        // Log.d(TAG, "onSensorChanged: X: " + event.values[0] + "Y: " + event.values[1] + "Z: " + event.values[2]);
 
-        if (event.sensor == accelerometer){
-             float xrad = event.values[0];
-             float yrad = event.values[1];
-             float zrad = event.values[2];
+        if (event.sensor.getType() == Sensor.TYPE_ACCELEROMETER){
 
-            xValue.setText("X:" + xrad);
-            yValue.setText("Y:" + yrad);
-            zValue.setText("Z:" + zrad);
+            float x = event.values[0];
+            float y = event.values[1];
+            float z = event.values[2];
+
+            String xNew = ("X: " + x);
+            String yNew = ("X: " + y);
+            String zNew = ("X: " + z);
+
+
+            xValue.setText(xNew);
+            yValue.setText(yNew);
+            zValue.setText(zNew);
         }
 
     }
