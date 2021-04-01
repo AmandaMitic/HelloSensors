@@ -28,9 +28,11 @@
         android:layout_marginRight="272dp"
         android:layout_marginBottom="504dp"
         android:text="Heading: "
+        android:textColor="#040303"
+        android:textSize="18sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        />
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
         android:id="@+id/degree"
@@ -40,6 +42,9 @@
         android:layout_marginRight="100dp"
         android:layout_marginBottom="504dp"
         android:text=""
+        android:textColor="#040303"
+        android:textSize="18sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 

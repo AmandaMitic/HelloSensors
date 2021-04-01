@@ -36,7 +36,7 @@ public class AccelerometerActivity extends AppCompatActivity implements SensorEv
         zValue = (TextView) findViewById(R.id.zValue);
         message = (TextView) findViewById(R.id.message);
 
-        //Tillagt
+
         sensormanager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         accelerometer = sensormanager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
 
@@ -46,8 +46,6 @@ public class AccelerometerActivity extends AppCompatActivity implements SensorEv
 
     @Override
     public void onSensorChanged(SensorEvent event) {
-       // Log.d(TAG, "onSensorChanged: X: " + event.values[0] + "Y: " + event.values[1] + "Z: " + event.values[2]);
-
         if (event.sensor.getType() == Sensor.TYPE_ACCELEROMETER){
 
             float x = event.values[0];
@@ -65,6 +63,8 @@ public class AccelerometerActivity extends AppCompatActivity implements SensorEv
 
             if (x < -1){
                 message.setText("Your phone is tilting right!");
+
+                //Version control and controlling if the x-value is < -8
                 if (Build.VERSION.SDK_INT >= 26 && x < -8) {
                     vibrator.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
                 } else if((Build.VERSION.SDK_INT < 26 && x < 8)){
@@ -73,6 +73,7 @@ public class AccelerometerActivity extends AppCompatActivity implements SensorEv
                 }
             } else if(x >1) {
                 message.setText("Your phone is tilting left!");
+                //Version control and controlling if the x-value is > 8
                 if (Build.VERSION.SDK_INT >= 26 && x > 8) {
                     vibrator.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
                 } else if((Build.VERSION.SDK_INT < 26 && x > 8)){

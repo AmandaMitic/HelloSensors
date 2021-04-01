@@ -68,14 +68,10 @@ public class CompassActivity extends AppCompatActivity implements SensorEventLis
         }
         if (event.sensor.getType() == Sensor.TYPE_ACCELEROMETER) {
             System.arraycopy(lowPass(event.values, accelerometer), 0, accelerometer, 0, event.values.length);
-
-             //System.arraycopy(event.values, 0, accelerometer, 0, event.values.length);
             accelerometerBool = true;
         }
         else if (event.sensor.getType() == Sensor.TYPE_MAGNETIC_FIELD) {
             System.arraycopy(lowPass(event.values, magnetometer), 0, magnetometer, 0, event.values.length);
-
-            //System.arraycopy(event.values, 0, mLastMagnetometer, 0, event.values.length);
             magnetometerBool = true;
         }
         if (accelerometerBool && magnetometerBool) {
@@ -84,8 +80,12 @@ public class CompassActivity extends AppCompatActivity implements SensorEventLis
             azimuth = (int) (Math.toDegrees(SensorManager.getOrientation(rotation, rotationResult)[0]) + 360) % 360;
         }
 
+        //30° margin to North, West, East and South
+        //60° margin to Northwest, Northeast, Southwest and Southeast.
         if (azimuth >= 345 || azimuth <= 15) {
             value.setText(azimuth + "° NORTH");
+
+            //Version control
             if (Build.VERSION.SDK_INT >=26) {
                 vibrator.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
             } else {
