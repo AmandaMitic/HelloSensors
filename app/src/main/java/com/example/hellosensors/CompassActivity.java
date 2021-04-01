@@ -1,12 +1,18 @@
 package com.example.hellosensors;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
+import android.content.Context;
+import android.graphics.Color;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.VibrationEffect;
+import android.os.Vibrator;
 import android.view.animation.Animation;
 import android.view.animation.RotateAnimation;
 import android.widget.ImageView;
@@ -22,22 +28,30 @@ public class CompassActivity extends AppCompatActivity implements SensorEventLis
     private float[] rotationResult;
     private int currentDegree;
     private int azimuth = 0;
-    private float[] accelerometer;
-    private float[] magnetometer;
+    private float[] accelerometer = new float[3];
+    private float[] magnetometer = new float[3];
     private boolean accelerometerBool;
     private boolean magnetometerBool;
     private float LOWPASS_FACTOR = 0.25f;
+    Vibrator vibrator;
+    ConstraintLayout color;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_compass);
+        color = findViewById(R.id.background);
 
+        vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+        sensormanager = (SensorManager) getSystemService(SENSOR_SERVICE);
         magnetometerSensor = sensormanager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
         accelerometerSensor = sensormanager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
-        sensormanager = (SensorManager) getSystemService(SENSOR_SERVICE);
         vector = sensormanager.getDefaultSensor(Sensor.TYPE_ROTATION_VECTOR);
+
+        sensormanager.registerListener(this, accelerometerSensor, SensorManager.SENSOR_DELAY_UI);
+        sensormanager.registerListener(this, magnetometerSensor, SensorManager.SENSOR_DELAY_UI);
+        sensormanager.registerListener(this, vector, SensorManager.SENSOR_DELAY_UI);
 
         rotation = new float[9];
         rotationResult = new float[3];
@@ -55,7 +69,7 @@ public class CompassActivity extends AppCompatActivity implements SensorEventLis
         if (event.sensor.getType() == Sensor.TYPE_ACCELEROMETER) {
             System.arraycopy(lowPass(event.values, accelerometer), 0, accelerometer, 0, event.values.length);
 
-            // System.arraycopy(event.values, 0, mLastAccelerometer, 0, event.values.length);
+             //System.arraycopy(event.values, 0, accelerometer, 0, event.values.length);
             accelerometerBool = true;
         }
         else if (event.sensor.getType() == Sensor.TYPE_MAGNETIC_FIELD) {
@@ -72,6 +86,12 @@ public class CompassActivity extends AppCompatActivity implements SensorEventLis
 
         if (azimuth >= 345 || azimuth <= 15) {
             value.setText(azimuth + "° NORTH");
+            if (Build.VERSION.SDK_INT >=26) {
+                vibrator.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
+            } else {
+                //deprecated in API 26
+                vibrator.vibrate(500);
+            }
         }
         else if (azimuth < 345 && azimuth >= 325) {
           value.setText(azimuth + "° NORTHWEST");
@@ -95,6 +115,12 @@ public class CompassActivity extends AppCompatActivity implements SensorEventLis
             value.setText(azimuth + "° NORTHEAST");
         }
 
+        //Change the color to red when the compass points towards North otherwise white
+        if (azimuth >= 345 || azimuth <= 15) {
+            color.setBackgroundColor(Color.RED);
+        } else if(azimuth <= 345 || azimuth >= 15){
+            color.setBackgroundColor(Color.WHITE);
+        }
         RotateAnimation ra = new RotateAnimation(
                 currentDegree,
                 -azimuth,
