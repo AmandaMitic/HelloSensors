@@ -11,6 +11,8 @@ Jag har använt mig av kod från [Android Accelerometer Tutorial 1](https://www.
 Jag valde att skriva ut en text när telefonen är vinklad åt vänster eller höger (alltså enbart i x-riktning). Men dessutom lades det till en vibration som också visade på att telefonen var riktad antingen åt vänster eller höger. Detta gjordes på grund av att det existerar användare som kanske inte har perspekt syn eller någon synskada som istället kan känna av vibrationen i handen som en feedback. 
 
 ### Kompass
+Jag har använt mig av kod från [Android compass code example](https://www.javacodegeeks.com/2013/09/android-compass-code-example.html), men dessutom utgått rätt mycket från hur jag gjorde i AccelerometerActivity. 
+
 Jag valde att ändra färg till rött på bakgrunden när telefonen är riktad åt Norr. Men dessutom lades det till en vibration som också visade på att telefonen var riktad åt Norr. 
 
 Detta gjordes med samma avsikt som för accelerometern,för att vissa användare kanske har en synskada, då vibrationen kan användas som feedback istället. 
@@ -24,8 +26,11 @@ Detta gjordes med samma avsikt som för accelerometern,för att vissa användare
 
 #### Sources and information from: 
  - https://developer.android.com/training/basics/firstapp/index.html
+ - https://developer.android.com/training/basics/firstapp/building-ui
  - https://developer.android.com/guide/topics/sensors/sensors_motion.html
  - https://developer.android.com/reference/android/hardware/SensorManager.html
+ - https://developer.android.com/reference/android/hardware/SensorEvent.html
+ - https://developer.android.com/reference/android/hardware/Sensor#TYPE_ACCELEROMETER
  - https://developer.android.com/training/constraint-layout 
  - https://www.techrepublic.com/article/pro-tip-create-your-own-magnetic-compass-using-androids-internal-sensors/
  - https://stackoverflow.com/questions/13950338/how-to-make-an-android-device-vibrate-with-different-frequency  
