@@ -93,22 +93,22 @@ public class CompassActivity extends AppCompatActivity implements SensorEventLis
                 vibrator.vibrate(500);
             }
         }
-        else if (azimuth < 345 && azimuth >= 325) {
+        else if (azimuth < 345 && azimuth >= 285) {
           value.setText(azimuth + "° NORTHWEST");
         }
-        else if (azimuth < 325 && azimuth >= 255) {
+        else if (azimuth < 285 && azimuth >= 255) {
            value.setText(azimuth + "° WEST");
         }
-        else if (azimuth < 255 && azimuth >= 185) {
+        else if (azimuth < 255 && azimuth >= 195) {
             value.setText(azimuth + "° SOUTHWEST");
         }
-        else if (azimuth < 185 && azimuth >= 165) {
+        else if (azimuth < 195 && azimuth >= 165) {
             value.setText(azimuth + "° SOUTH");
         }
-        else if (azimuth < 165 && azimuth >= 95) {
+        else if (azimuth < 165 && azimuth >= 105) {
             value.setText(azimuth + "° SOUTHEAST");
         }
-        else if (azimuth < 95 && azimuth >= 75) {
+        else if (azimuth < 105 && azimuth >= 75) {
             value.setText(azimuth + "° EAST");
         }
         else {
